@@ -7,11 +7,7 @@ defmodule Friends.User do
     field :avatar_url, :string
     field :confirmed_at, :utc_datetime
 
-    embeds_one :profile, Profile do
-      field :online, :boolean
-      field :dark_mode, :boolean
-      field :visibility, Ecto.Enum, values: [:public, :private, :friends_only]
-    end
+    embeds_one :profile, Friends.UserProfile
 
     timestamps()
   end
