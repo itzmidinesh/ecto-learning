@@ -1,5 +1,6 @@
 defmodule Friends.User do
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "users" do
     field :full_name, :string
@@ -9,5 +10,12 @@ defmodule Friends.User do
     embeds_one :profile, Friends.UserProfile
 
     timestamps(type: :utc_datetime)
+  end
+
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:full_name, :email, :avatar_url])
+    |> validate_required([:full_name, :email])
+    |> cast_embed(:profile, required: true, with: &Friends.UserProfile.changeset/2)
   end
 end
