@@ -5,5 +5,7 @@ defmodule Friends.UserProfile do
     field :online, :boolean
     field :dark_mode, :boolean
     field :visibility, Ecto.Enum, values: [:public, :private, :friends_only]
+
+    timestamps(type: :utc_datetime)
   end
 end
