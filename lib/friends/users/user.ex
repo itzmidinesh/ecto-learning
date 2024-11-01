@@ -7,7 +7,7 @@ defmodule Friends.User do
     field :email, :string
     field :avatar_url, :string
     field :confirmed_at, :utc_datetime
-    embeds_one :profile, Friends.UserProfile
+    embeds_one :profile, Friends.UserProfile, on_replace: :update
 
     timestamps(type: :utc_datetime)
   end
